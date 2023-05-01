@@ -131,3 +131,5 @@ ACCOUNT_EMAIL_REQUIRED = True
 # email: ersultan.abduvalov@gmail.com
 # ers abd
 # ers123
+
+# need to add profile and favorites
