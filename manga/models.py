@@ -14,7 +14,7 @@ class Manga(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     description = models.TextField()
-    cover_image = models.ImageField(upload_to='covers')
+    cover_image = models.ImageField(upload_to='media/covers')
     categories = models.ManyToManyField(Category)
     ratings = models.ManyToManyField(User, through='Rating')
 
@@ -34,7 +34,7 @@ class Rating(models.Model):
 class MangaPage(models.Model):
     manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
     page_number = models.PositiveIntegerField()
-    image = models.ImageField(upload_to='manga_pages')
+    image = models.ImageField(upload_to='media/manga_pages')
 
     class Meta:
         unique_together = ('manga', 'page_number')
