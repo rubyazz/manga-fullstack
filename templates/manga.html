@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Manga</title>
+    <script>
+      let currentPage = 1;
+
+      function nextPage() {
+        currentPage += 1;
+        fetch(`/manga/{{ manga.id }}/page/${{ currentPage }}`)
+          .then(response => response.blob())
+          .then(blob => {
+            const url = URL.createObjectURL(blob);
+            const img = document.createElement('img');
+            img.src = url;
+            document.body.appendChild(img);
+          });
+      }
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+          nextPage();
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <img src="/manga/{{ manga.id }}/page/1">
+    
+  </body>
+</html>
