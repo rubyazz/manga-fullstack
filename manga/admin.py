@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext as _
-from .models import Manga, Category, Rating
+from .models import Manga, Category, Rating, MangaPage
 
 
 @admin.register(Manga)
@@ -23,3 +23,11 @@ class RatingAdmin(admin.ModelAdmin):
     list_filter = ('user', 'manga', 'created_at')
     search_fields = ('user__username', 'manga__title')
     ordering = ('-created_at',)
+
+
+@admin.register(MangaPage)
+class MangaPageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'manga', 'page_number', 'image')
+    list_filter = ('manga',)
+    search_fields = ('manga__title', 'page_number')
+    ordering = ('manga', 'page_number')

@@ -30,3 +30,15 @@ class Rating(models.Model):
     class Meta:
         unique_together = ('user', 'manga')
 
+
+class MangaPage(models.Model):
+    manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
+    page_number = models.PositiveIntegerField()
+    image = models.ImageField(upload_to='manga_pages')
+
+    class Meta:
+        unique_together = ('manga', 'page_number')
+        ordering = ['page_number']
+
+    def __str__(self):
+        return f'{self.manga.title} - Page {self.page_number}'
