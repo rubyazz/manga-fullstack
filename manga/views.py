@@ -21,3 +21,5 @@ class MangaDetailView(View):
         pages = MangaPage.objects.filter(manga=manga).order_by('page_number')
         context = {'manga': manga, 'pages': pages}
         return render(request, 'manga_detail.html', context)
+
+#https://www.figma.com/file/H9rWhlkSUd8sT3GwWKyPux/Manga-App-UI-(Community)?node-id=59-504&t=CtauUVcYwUaU5Gvp-0
