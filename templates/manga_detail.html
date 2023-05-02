@@ -10,8 +10,10 @@
     </head>
     <body>
         <h1>{{ manga.title }}</h1>
-            <img src="{{ manga.cover_image.url }}" alt="{{ manga.title }} cover image">
-            <p>{{ manga.description }}</p>
+            <img src="{{ manga.cover_image.url }}" alt="{{ manga.title }} cover image"></br>
+            Category:<p>{{ manga.categories }}</p>
+            Description:<p>{{ manga.description }}</p>
+            Author:<p>{{ manga.author }}</p>
             <div>
                 {% for page in manga.pages.all %}
                 <img src="{{ page.image.url }}" alt="Page {{ page.page_number }}">

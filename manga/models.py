@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.translation import gettext_lazy as _
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -10,9 +11,17 @@ class Category(models.Model):
         return self.name
 
 
+class Author(models.Model):
+    name = models.CharField(max_length=200)
+    birth_date = models.DateField(_("birth date"), blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Manga(models.Model):
     title = models.CharField(max_length=255)
-    author = models.CharField(max_length=255)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     description = models.TextField()
     cover_image = models.ImageField(upload_to='media/covers')
     categories = models.ManyToManyField(Category)
